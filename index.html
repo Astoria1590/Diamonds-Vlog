@@ -19,8 +19,9 @@
       align-items: center;
       padding: 1rem 2rem;
       background-color: #f9dada;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
       position: relative;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      z-index: 1002;
     }
 
     .logo h1 {
@@ -44,18 +45,34 @@
     .hamburger {
       display: none;
       flex-direction: column;
-      cursor: pointer;
+      justify-content: center;
+      align-items: center;
+      width: 30px;
+      height: 24px;
       background: none;
       border: none;
-      z-index: 1001;
+      cursor: pointer;
+      z-index: 1100;
     }
 
     .bar {
       height: 3px;
       width: 25px;
       background-color: #5a3e36;
-      margin: 4px 0;
-      transition: all 0.3s ease;
+      margin: 3px 0;
+      transition: all 0.4s ease;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
     }
 
     .nav-menu {
@@ -89,30 +106,35 @@
       }
 
       .nav-menu {
-        position: absolute;
-        top: 100%;
+        position: fixed;
+        top: 0;
         left: 0;
-        right: 0;
-        background-color: #f9dada;
+        height: 100vh;
+        width: 100vw;
+        background-color: #fce4eb;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
         display: none;
+        z-index: 1000;
       }
 
       .nav-menu.active {
         display: flex;
       }
-    }
 
-    .hamburger.active .bar:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
+      .nav-menu ul {
+        flex-direction: column;
+        align-items: center;
+      }
 
-    .hamburger.active .bar:nth-child(2) {
-      opacity: 0;
-    }
+      .nav-menu li {
+        margin: 1.5rem 0;
+      }
 
-    .hamburger.active .bar:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
+      .nav-menu li a {
+        font-size: 1.5rem;
+      }
     }
 
     .main-content {
@@ -166,7 +188,7 @@
       display: flex;
     }
 
-   .video-overlay video {
+    .video-overlay video {
       width: 100%;
       max-width: 560px;
       height: auto;
@@ -198,7 +220,6 @@
       font-style: italic;
       color: #7a5950;
       margin-bottom: 2rem;
-      font-family: 'Quicksand', sans-serif;
     }
 
     .footer {
@@ -207,31 +228,8 @@
       background-color: #f9dada;
       color: #5a3e36;
       font-size: 0.9rem;
-      font-family: 'Quicksand', sans-serif;
     }
   </style>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const hamburger = document.getElementById('hamburger');
-      const navMenu = document.getElementById('nav-menu');
-      const videoButton = document.getElementById('open-video');
-      const videoOverlay = document.getElementById('video-overlay');
-      const closeBtn = document.getElementById('close-video');
-
-      hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-      });
-
-      videoButton.addEventListener('click', () => {
-        videoOverlay.classList.add('active');
-      });
-
-      closeBtn.addEventListener('click', () => {
-        videoOverlay.classList.remove('active');
-      });
-    });
-  </script>
 </head>
 <body>
   <header class="navbar">
@@ -268,7 +266,6 @@
         <span class="close-btn" id="close-video">&times;</span>
         <video controls>
           <source src="https://res.cloudinary.com/dbeifkzba/video/upload/v1752256562/FDownloader.Net_AQOEgtCLCS20mmYjkLCnlZ-FFNcwQzN7r6sY90DYV0rUbbVxFu_hIN5G68MS7ITtz98KjDdhoawE3QRG9p-0w-mR_720p__HD_ezmlvb.mp4" type="video/mp4">
-          Your browser does not support the video tag.
         </video>
       </div>
       <p class="caption">"Sharing my Sunday thoughts on peace and grace." — July 7, 2025</p>
@@ -278,31 +275,23 @@
       <h3>Voice Reflections</h3>
       <audio controls>
         <source src="reflection-audio.mp3" type="audio/mp3">
-        Your browser does not support the audio tag.
       </audio>
       <p class="caption">"Just a little morning motivation for you all." — July 6, 2025</p>
     </section>
 
-<section class="media-section" id="about">
-  <h3>About Diamond</h3>
-  <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 2rem;">
-    <div style="flex: 0 0 auto;">
-      <img src="https://res.cloudinary.com/dbeifkzba/image/upload/v1752257758/diamond_photo_hq1aos.jpg" alt="Diamond Smith" style="width: 180px; height: 180px; border-radius: 50%; box-shadow: 0 0 15px #f2c6cc; object-fit: cover;">
-    </div>
-    <div style="flex: 1; min-width: 240px;">
-      <p><strong>Empowering Women | Encourager | Faith-Driven | Veteran</strong></p>
-      <p>Diamond Smith is a powerful voice of encouragement and authenticity for women from all walks of life. As a proud veteran and woman of faith, Diamond brings warmth, strength, and light to every story she shares.</p>
-
-      <p>🌸 Her journey—from military service to personal healing and growth—has shaped her into a relatable and inspiring figure. Through her words, voice, and videos, Diamond connects deeply with women who are seeking motivation, self-love, and spiritual renewal.</p>
-
-      <p>🦋 Whether she’s sharing a heartfelt reflection, a lesson from her past, or a moment of joy, Diamond’s heart beats for empowering other women to rise in their purpose and walk boldly in grace.</p>
-
-      <p>💖 Her vlog is more than just a platform—it's a sanctuary of love, healing, and sisterhood. Diamond believes every woman deserves to be heard, seen, and uplifted.</p>
-
-      <p><em>#FaithInAction #Sisterhood #Empowerment #HealingJourney #WomenSupportingWomen</em></p>
-    </div>
-  </div>
-</section>
+    <section class="media-section" id="about">
+      <h3>About Diamond</h3>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 2rem;">
+        <div style="flex: 0 0 auto;">
+          <img src="https://res.cloudinary.com/dbeifkzba/image/upload/v1752257758/diamond_photo_hq1aos.jpg" alt="Diamond Smith" style="width: 180px; height: 180px; border-radius: 50%; box-shadow: 0 0 15px #f2c6cc; object-fit: cover;">
+        </div>
+        <div style="flex: 1; min-width: 240px;">
+          <p><strong>Empowering Women | Encourager | Faith-Driven | Veteran</strong></p>
+          <p>Diamond Smith is a powerful voice of encouragement and authenticity for women from all walks of life...</p>
+          <p><em>#FaithInAction #Sisterhood #Empowerment #HealingJourney #WomenSupportingWomen</em></p>
+        </div>
+      </div>
+    </section>
 
     <section class="media-section" id="contact">
       <h3>Contact Me</h3>
@@ -313,5 +302,28 @@
   <footer class="footer">
     <p>&copy; 2025 Diamond Smith. All rights reserved.</p>
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('nav-menu');
+      const videoButton = document.getElementById('open-video');
+      const videoOverlay = document.getElementById('video-overlay');
+      const closeBtn = document.getElementById('close-video');
+
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+      });
+
+      videoButton.addEventListener('click', () => {
+        videoOverlay.classList.add('active');
+      });
+
+      closeBtn.addEventListener('click', () => {
+        videoOverlay.classList.remove('active');
+      });
+    });
+  </script>
 </body>
 </html>
